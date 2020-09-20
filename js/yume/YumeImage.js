@@ -17,16 +17,22 @@ class YumeImage {
         this.image.src = filename
     }
 
-    draw(x, y) {
+    draw(x, y, scaleX = 1, scaleY = 1) {
         if (this.loaded) {
-            this.ctx.drawImage(this.image, x, y)
+            this.ctx.save()
+            this.ctx.translate(x, y)
+            this.ctx.scale(scaleX, scaleY)
+            this.ctx.drawImage(this.image, 0, 0)
+            this.ctx.restore()
         }
     }
 
-    drawRot(x, y, angle, pivotX = 0.5, pivotY = 0.5) {
+    drawRot(x, y, angle, pivotX = 0.5, pivotY = 0.5, scaleX = 1, scaleY = 1) {
         this.ctx.save()
-        this.ctx.translate(x, y);
-        this.ctx.rotate(angle * (Math.PI / 180));
+        this.ctx.translate(x, y)
+        this.ctx.rotate(angle * (Math.PI / 180))
+        this.ctx.scale(scaleX, scaleY)
+
         this.ctx.drawImage(this.image, -this.image.width * pivotX, -this.image.height * pivotY, 
             this.image.width, this.image.height
         );

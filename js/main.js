@@ -1,7 +1,6 @@
 class Game extends YumeWindow {
     loadContent() {
-        this.sprite = new YumeImage(this.ctx, "../images/secretary.png")
-        this.ennemy = new YumeAnimation(this.ctx, "../images/ennemy.png", 32, 32)
+        this.ennemy = new YumeImage(this.ctx, "../images/ennemy.png")
         this.x = 0
         this.angle = 0
     }
@@ -12,9 +11,8 @@ class Game extends YumeWindow {
     }
 
     draw() {
-        this.drawRect(10, 10, 200, 20, "purple")
-        this.sprite.drawRot(160, 120, this.angle, 0.5, 1)
-        this.ennemy.drawFrameRot(3, 50, 50, this.angle, 0.5, 1)
+        this.drawRect(0, 0, 32, 32, "purple")
+        this.ennemy.draw(32, 32, 1, -1)
     }
 }
 

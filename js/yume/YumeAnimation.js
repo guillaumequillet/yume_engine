@@ -33,4 +33,22 @@ class YumeAnimation {
             )
         }
     }
+
+    drawFrameRot(frame, x, y, angle, pivotX = 0.5, pivotY = 0.5) {
+        if (this.loaded) {
+            const srcY = Math.floor(frame / this.framesInRow)
+            const srcX = frame === 0 ? 0 : frame % srcY
+
+            this.ctx.save()
+            this.ctx.translate(x, y);
+            this.ctx.rotate(angle * (Math.PI / 180));
+
+            this.ctx.drawImage(this.image, srcX * this.frameWidth, srcY * this.frameHeight, 
+                this.frameWidth, this.frameHeight, -this.frameWidth * pivotX, -this.frameHeight * pivotY, 
+                this.frameWidth, this.frameHeight    
+            )
+
+            this.ctx.restore()
+        }
+    }
 }

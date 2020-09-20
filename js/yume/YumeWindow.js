@@ -21,20 +21,19 @@ class YumeWindow {
             }
         }
         document.onkeydown = (e) => {
+            // we add the key to pressedKeys
             if (!this.pressedKeys.includes(e.key)) {
-                this.buttonDown(e.key)
                 this.pressedKeys.push(e.key)
+                this.keyDown(e.key)
             }
         }
         document.onkeyup = (e) => {
-            this.buttonUp(e.key)
+            // we remove the key from pressedKeys
             const index = this.pressedKeys.indexOf(e.key)
             if (index !== -1) {
                 this.pressedKeys.splice(index, 1)
+                this.keyUp(e.key)
             }
-        }
-        document.onkeypress = (e) => {
-            this.buttonPress(e.key)
         }
     }
     
@@ -47,6 +46,18 @@ class YumeWindow {
         this.mouseY = e.clientY
     }
     
+    keyPressed(key) {
+        return this.pressedKeys.includes(key)
+    }
+
+    keyDown(key) {
+        // will be overwritten by child class
+    }
+
+    keyUp(key) {
+        // will be overwritten by child class
+    }
+
     loadContent() {
         // will be overwritten by child class
     }
@@ -55,17 +66,6 @@ class YumeWindow {
         // will be overwritten by child class
     }
     
-    buttonDown(key) {
-        // will be overwritten by child class
-    }
-    
-    buttonUp(key) {
-        // will be overwritten by child class
-    }
-    
-    buttonPress(key) {
-        // will be overwritten by child class
-    }
 
     update() {
         // will be overwritten by child class

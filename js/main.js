@@ -9,33 +9,27 @@ class Game extends YumeWindow {
         // new YumeAudio("audio/songs/TeamWork_MiniJam.ogg").play()
     }
 
-    buttonDown(key) {
-
-    }
-    
-    buttonUp(key) {
-
-    }
-
-    buttonPress(key) {
-        const velocity = 2
-        switch (key) {
-            case 'q':
-                this.x -= velocity
-                break
-            case 'd':
-                this.x += velocity
-                break
-            case 'z':
-                this.y -= velocity
-                break
-            case 's':
-                this.y += velocity
-                break
+    keyUp(key) {
+        if (key === 'r') {
+            this.x = 32
+            this.y = 32
         }
     }
 
     update() {
+        const velocity = 2
+
+        if (this.keyPressed("d") || this.keyPressed("ArrowRight")) {
+            this.x += velocity
+        } else if (this.keyPressed("q") || this.keyPressed("ArrowLeft")) {
+            this.x -= velocity
+        }
+        if (this.keyPressed("z") || this.keyPressed("ArrowUp")) {
+            this.y -= velocity
+        } else if (this.keyPressed("s") || this.keyPressed("ArrowDown")) {
+            this.y += velocity
+        }
+
         this.angle += 1
         this.scale += this.scaleSpeed
 

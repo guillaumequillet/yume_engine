@@ -5,12 +5,31 @@ class YumeWindow {
     mouseY = null
     pressedKeys = []
 
-    constructor() {
-        this.canvas = document.querySelector("canvas")
-        this.ctx = this.canvas.getContext("2d")
-        this.ctx.imageSmoothingEnabled = false
+    constructor(width, height) {
+        this.createCanvas(width, height)
         this.loadContent()
         this.loadEvents()
+    }
+
+    createCanvas(width, height) {
+        // canvas creation and setup        
+        this.canvas = document.createElement("canvas")
+        this.canvas.width = width
+        this.canvas.height = height
+        this.canvas.style = "image-rendering: pixelated;"
+        this.canvas.style.width = width + " px"
+        this.canvas.style.height = height + " px"
+        this.canvas.style.border = "1px solid black"
+
+        // canvas added to the DOM
+        document.body.appendChild(this.canvas)
+
+        // get and setup context
+        this.ctx = this.canvas.getContext("2d")
+        this.ctx.mozImageSmoothingEnabled = false;
+        this.ctx.webkitImageSmoothingEnabled = false;
+        this.ctx.msImageSmoothingEnabled = false;
+        this.ctx.imageSmoothingEnabled = false;
     }
 
     loadEvents() {
@@ -62,7 +81,7 @@ class YumeWindow {
         // will be overwritten by child class
     }
 
-    mouseClick(key) {
+    mouseClick() {
         // will be overwritten by child class
     }
     

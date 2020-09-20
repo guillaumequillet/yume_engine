@@ -3,16 +3,16 @@ class Game extends YumeWindow {
         this.ennemy = new YumeAnimation(this.ctx, "../images/ennemy.png", 32, 32)
         this.x = 0
         this.angle = 0
+        this.song = new YumeSong("../audio/songs/TeamWork_MiniJam.ogg")
+        // this.song.play(true)
     }
 
     update() {
-        // this.x += 0.5
-        // this.angle += 2
+        
     }
 
     draw() {
-        this.drawRect(0, 0, 32, 32, "purple")
-        this.ennemy.drawFrameRot(0, 32, 32, this.angle, 0.5, 1, 2, -2)
+
     }
 }
 

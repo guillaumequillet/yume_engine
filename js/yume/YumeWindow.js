@@ -5,6 +5,7 @@ class YumeWindow {
     constructor() {
         this.canvas = document.querySelector("canvas")
         this.ctx = this.canvas.getContext("2d")
+        this.ctx.imageSmoothingEnabled = false
         this.loadContent()
     }
 

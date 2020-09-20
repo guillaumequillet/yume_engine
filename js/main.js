@@ -7,7 +7,7 @@ class Game extends YumeWindow {
 
     update() {
         // this.x += 0.5
-        this.angle += 1
+        // this.angle += 2
     }
 
     draw() {

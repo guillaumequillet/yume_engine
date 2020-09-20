@@ -23,25 +23,34 @@ class YumeAnimation {
         this.image.src = filename
     }
 
-    drawFrame(frame, x, y) {
-        if (this.loaded) {
-            const srcY = Math.floor(frame / this.framesInRow)
-            const srcX = frame === 0 ? 0 : frame % srcY
-            this.ctx.drawImage(this.image, srcX * this.frameWidth, srcY * this.frameHeight, 
-                this.frameWidth, this.frameHeight,
-                x, y, this.frameWidth, this.frameHeight    
-            )
-        }
-    }
-
-    drawFrameRot(frame, x, y, angle, pivotX = 0.5, pivotY = 0.5) {
+    drawFrame(frame, x, y, scaleX = 1, scaleY = 1) {
         if (this.loaded) {
             const srcY = Math.floor(frame / this.framesInRow)
             const srcX = frame === 0 ? 0 : frame % srcY
 
             this.ctx.save()
-            this.ctx.translate(x, y);
-            this.ctx.rotate(angle * (Math.PI / 180));
+            this.ctx.translate(x, y)
+            this.ctx.scale(scaleX, scaleY)
+
+            this.ctx.drawImage(this.image, srcX * this.frameWidth, srcY * this.frameHeight, 
+                this.frameWidth, this.frameHeight,
+                0, 0, this.frameWidth, this.frameHeight    
+            )
+            
+            this.ctx.restore()
+        }
+    }
+
+    drawFrameRot(frame, x, y, angle, pivotX = 0.5, pivotY = 0.5, scaleX = 1, scaleY = 1) {
+        if (this.loaded) {
+            const srcY = Math.floor(frame / this.framesInRow)
+            const srcX = frame === 0 ? 0 : frame % srcY
+
+            this.ctx.save()
+            this.ctx.translate(x, y)
+            this.ctx.rotate(angle * (Math.PI / 180))
+            this.ctx.scale(scaleX, scaleY)
+            
 
             this.ctx.drawImage(this.image, srcX * this.frameWidth, srcY * this.frameHeight, 
                 this.frameWidth, this.frameHeight, -this.frameWidth * pivotX, -this.frameHeight * pivotY, 

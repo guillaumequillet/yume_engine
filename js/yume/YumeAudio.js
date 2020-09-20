@@ -1,4 +1,4 @@
-class YumeSong {
+class YumeAudio {
     // properties
     audio
     loaded = false

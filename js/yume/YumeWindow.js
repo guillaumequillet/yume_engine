@@ -3,6 +3,7 @@ class YumeWindow {
     ctx = null
     mouseX = null
     mouseY = null
+    pressedKeys = []
 
     constructor() {
         this.canvas = document.querySelector("canvas")
@@ -15,25 +16,56 @@ class YumeWindow {
     loadEvents() {
         document.onmousemove = (e) => this.mouseMove(e)
         document.onmousedown = (e) => {
-            if (e.button === 0) // if left click
+            if (e.button === 0) { // if left click 
                 this.mouseClick()
+            }
+        }
+        document.onkeydown = (e) => {
+            this.buttonDown(e.key)
+            if (!this.pressedKeys.includes(e.key)) {
+                this.pressedKeys.push(e.key)
+            }
+        }
+        document.onkeyup = (e) => {
+            this.buttonUp(e.key)
+            const index = this.pressedKeys.indexOf(e.key)
+            if (index !== -1) {
+                this.pressedKeys.splice(index, 1)
+            }
+        }
+        document.onkeypress = (e) => {
+            if (!this.pressedKeys.includes(e.key)) {
+                this.buttonPress(e.key)
+            }
         }
     }
-
-    loadContent() {
-        // will be overwritten by child class
-    }
-
+    
     clear() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     }
-
+    
     mouseMove(e) {
         this.mouseX = e.clientX
         this.mouseY = e.clientY
     }
+    
+    loadContent() {
+        // will be overwritten by child class
+    }
 
     mouseDown(key) {
+        // will be overwritten by child class
+    }
+    
+    buttonDown(key) {
+        // will be overwritten by child class
+    }
+    
+    buttonUp(key) {
+        // will be overwritten by child class
+    }
+    
+    buttonPress(key) {
         // will be overwritten by child class
     }
 

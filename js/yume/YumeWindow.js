@@ -21,8 +21,8 @@ class YumeWindow {
             }
         }
         document.onkeydown = (e) => {
-            this.buttonDown(e.key)
             if (!this.pressedKeys.includes(e.key)) {
+                this.buttonDown(e.key)
                 this.pressedKeys.push(e.key)
             }
         }
@@ -34,9 +34,7 @@ class YumeWindow {
             }
         }
         document.onkeypress = (e) => {
-            if (!this.pressedKeys.includes(e.key)) {
-                this.buttonPress(e.key)
-            }
+            this.buttonPress(e.key)
         }
     }
     
@@ -53,7 +51,7 @@ class YumeWindow {
         // will be overwritten by child class
     }
 
-    mouseDown(key) {
+    mouseClick(key) {
         // will be overwritten by child class
     }
     

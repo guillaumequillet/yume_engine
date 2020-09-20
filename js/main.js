@@ -4,12 +4,9 @@ class Game extends YumeWindow {
         this.angle = 0
         this.scale = 1
         this.scaleSpeed = 0.05
+        this.x = 32
+        this.y = 32
         // new YumeAudio("audio/songs/TeamWork_MiniJam.ogg").play()
-    }
-
-    mouseClick() {
-        this.x = this.mouseX
-        this.y = this.mouseY
     }
 
     buttonDown(key) {
@@ -21,7 +18,21 @@ class Game extends YumeWindow {
     }
 
     buttonPress(key) {
-        
+        const velocity = 2
+        switch (key) {
+            case 'q':
+                this.x -= velocity
+                break
+            case 'd':
+                this.x += velocity
+                break
+            case 'z':
+                this.y -= velocity
+                break
+            case 's':
+                this.y += velocity
+                break
+        }
     }
 
     update() {

@@ -20,6 +20,7 @@ class YumeWindow {
         this.canvas.style.width = width + " px"
         this.canvas.style.height = height + " px"
         this.canvas.style.border = "1px solid black"
+        this.canvas.innerText = "Your browser doesn't support canvas"
 
         // canvas added to the DOM
         document.body.appendChild(this.canvas)
@@ -59,6 +60,11 @@ class YumeWindow {
     clear() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     }
+
+    random(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+      
     
     mouseMove(e) {
         this.mouseX = e.clientX
@@ -97,6 +103,12 @@ class YumeWindow {
     drawRect(x, y, w, h, color) {
         this.ctx.fillStyle = color
         this.ctx.fillRect(x, y, w, h)
+    }
+
+    drawText(text, x, y, color, font) {
+        this.ctx.fillStyle = color
+        this.ctx.font = font;
+        this.ctx.fillText(text, x, y);
     }
 
 
